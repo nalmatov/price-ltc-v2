@@ -4,12 +4,25 @@ import Script from 'next/script';
 
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.BASE_API || 'http://localhost:3000/api'}/api/ltc-exchanges`);
-  const currencies = await res.json();
+  try {
+    const res = await fetch(`${process.env.BASE_API}/api/ltc-exchanges`);
+    const currencies = await res.json();
+  
+    return {
+      props: {
+        initialCurrencies: currencies.data,
+        initialSort: 0,
+        initialSortValue: 'invert',
+        BASE_API: process.env.BASE_API,
+      },
+    }
+  } catch (error) {
+    console.error(error);
+  }
 
   return {
     props: {
-      initialCurrencies: currencies.data,
+      initialCurrencies: [],
       initialSort: 0,
       initialSortValue: 'invert',
       BASE_API: process.env.BASE_API,
