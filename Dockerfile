@@ -1,9 +1,10 @@
-FROM node:20.19.0-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
+RUN npm install -g npm@11.2.0
+
 COPY package.json package-lock.json ./
-RUN npm install npm@11.2.0
 RUN npm install
 
 COPY . .
