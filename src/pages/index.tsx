@@ -4,7 +4,7 @@ import Script from 'next/script';
 
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.BASE_API}/api/ltc-exchanges`);
+  const res = await fetch(`${process.env.BASE_API || 'http://localhost:3000/api'}/api/ltc-exchanges`);
   const currencies = await res.json();
 
   return {
