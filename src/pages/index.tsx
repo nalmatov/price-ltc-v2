@@ -17,7 +17,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ initialCurrencies, BASE_API }: TableProps & { BASE_API: string }) {
+export default function Home({ initialCurrencies, BASE_API }: TableProps) {
   return (
     <>
       <Head>
